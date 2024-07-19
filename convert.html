@@ -1,0 +1,262 @@
+<html><head><title>Advanced Baking Converters</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f5f0;
+        }
+        h1, h2 {
+            color: #8b4513;
+            text-align: center;
+        }
+        .converter-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .converter {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            width: calc(50% - 10px);
+        }
+        @media (max-width: 768px) {
+            .converter {
+                width: 100%;
+            }
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #8b4513;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #8b4513;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #a0522d;
+        }
+        #result {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .tip {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffeeba;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .custom-converter {
+            background-color: #e6f3ff;
+            border: 2px dashed #4a90e2;
+        }
+    </style>
+    <script type="text/javascript" nonce="3ef5692b142a4420908a6375302" src="//local.adguard.org?ts=1720083836435&amp;type=content-script&amp;dmn=anto.tasis.com.au:2083&amp;url=https%3A%2F%2Fanto.tasis.com.au%3A2083%2Fcpsess7591037562%2Fdownload%3Fskipencode%3D1%26file%3D%252fhome%252fstopzone%252fbake.stop.zone%252fconvert.html&amp;app=com.google.Chrome&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script>
+<script type="text/javascript" nonce="3ef5692b142a4420908a6375302" src="//local.adguard.org?ts=1720083836435&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;type=user-script"></script><script type="text/javascript" nonce="3ef5692b142a4420908a6375302" src="//local.adguard.org?ts=1720083836435&amp;type=content-script&amp;dmn=websim.ai&amp;url=https%3A%2F%2Fwebsim.ai%2Fapi%2Fhtml%3Fpayload%3D%257B%2522id%2522%253A%2522F5mOomhuRKEUs6BMA%2522%252C%2522debug%2522%253A%2522true%2522%252C%2522raw%2522%253A%2522true%2522%257D&amp;app=com.google.Chrome&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script>
+    <script type="text/javascript" nonce="3ef5692b142a4420908a6375302" src="//local.adguard.org?ts=1720083836435&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;type=user-script"></script></head>
+    <body>
+        <h1>Advanced Converters</h1>
+        
+        <div class="converter-container">
+            <div class="converter">
+                <h2>Volume to Weight Converter</h2>
+                <form id="volumeToWeight">
+                    <label for="volumeAmount">Amount:</label>
+                    <input type="number" id="volumeAmount" step="0.01" required>
+                    
+                    <label for="volumeUnit">From Unit:</label>
+                    <select id="volumeUnit">
+                        <option value="cups">Cups</option>
+                        <option value="tablespoons">Tablespoons</option>
+                        <option value="teaspoons">Teaspoons</option>
+                        <option value="milliliters">Milliliters</option>
+                    </select>
+                    
+                    <label for="ingredient">Ingredient:</label>
+                    <select id="ingredient">
+                        <option value="flour">All-purpose Flour</option>
+                        <option value="sugar">Granulated Sugar</option>
+                        <option value="butter">Butter</option>
+                        <option value="milk">Milk</option>
+                        <option value="oil">Vegetable Oil</option>
+                        <option value="honey">Honey</option>
+                        <option value="cocoa">Cocoa Powder</option>
+                    </select>
+                    
+                    <button type="submit">Convert</button>
+                </form>
+                <div id="weightResult"></div>
+            </div>
+    
+            <div class="converter">
+                <h2>Temperature Converter</h2>
+                <form id="temperatureConverter">
+                    <label for="tempInput">Temperature:</label>
+                    <input type="number" id="tempInput" required>
+                    
+                    <label for="fromUnit">From:</label>
+                    <select id="fromUnit">
+                        <option value="celsius">Celsius</option>
+                        <option value="fahrenheit">Fahrenheit</option>
+                        <option value="gas">Gas Mark</option>
+                    </select>
+                    
+                    <button type="submit">Convert</button>
+                </form>
+                <div id="tempResult"></div>
+            </div>
+    
+            <div class="converter">
+                <h2>Scaling Calculator</h2>
+                <form id="scaleRecipe">
+                    <label for="originalYield">Original Recipe Yield:</label>
+                    <input type="number" id="originalYield" required>
+                    
+                    <label for="desiredYield">Desired Yield:</label>
+                    <input type="number" id="desiredYield" required>
+                    
+                    <label for="ingredient1">Ingredient 1 Amount:</label>
+                    <input type="number" id="ingredient1" required>
+                    
+                    <label for="ingredient2">Ingredient 2 Amount:</label>
+                    <input type="number" id="ingredient2">
+                    
+                    <button type="submit">Scale Recipe</button>
+                </form>
+                <div id="scaleResult"></div>
+            </div>
+    
+            <div class="converter custom-converter">
+                <h2>Custom Density Converter</h2>
+                <form id="customDensity">
+                    <label for="customAmount">Amount:</label>
+                    <input type="number" id="customAmount" step="0.01" required>
+                    
+                    <label for="customFromUnit">From Unit:</label>
+                    <select id="customFromUnit">
+                        <option value="volume">Volume (mL)</option>
+                        <option value="weight">Weight (g)</option>
+                    </select>
+                    
+                    <label for="customDensity">Ingredient Density (g/mL):</label>
+                    <input type="number" id="customDensity" step="0.01" required>
+                    
+                    <button type="submit">Convert</button>
+                </form>
+                <div id="customResult"></div>
+            </div>
+        </div>
+    
+        <div class="tip">
+            <h3>Pro Tip: Understanding Baker's Percentages</h3>
+            <p>Baker's percentages express ingredient amounts as a percentage of the flour weight. This method allows for easy scaling and understanding of recipe ratios. For example, in a bread recipe with 1000g flour and 600g water, the water would be expressed as 60% hydration.</p>
+        </div>
+    
+        <script>
+            document.getElementById('volumeToWeight').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const amount = parseFloat(document.getElementById('volumeAmount').value);
+                const unit = document.getElementById('volumeUnit').value;
+                const ingredient = document.getElementById('ingredient').value;
+                
+                const densities = {
+                    flour: 0.53, sugar: 0.85, butter: 0.96, milk: 1.03,
+                    oil: 0.92, honey: 1.42, cocoa: 0.53
+                };
+                
+                let mlAmount = amount;
+                if (unit === 'cups') mlAmount *= 236.588;
+                else if (unit === 'tablespoons') mlAmount *= 14.7868;
+                else if (unit === 'teaspoons') mlAmount *= 4.92892;
+                
+                const grams = mlAmount * densities[ingredient];
+                
+                document.getElementById('weightResult').innerHTML = `${amount} ${unit} of ${ingredient} weighs approximately ${grams.toFixed(1)} grams.`;
+            });
+    
+            document.getElementById('temperatureConverter').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const temp = parseFloat(document.getElementById('tempInput').value);
+                const fromUnit = document.getElementById('fromUnit').value;
+                let celsius, fahrenheit, gas;
+                
+                if (fromUnit === 'celsius') {
+                    celsius = temp;
+                    fahrenheit = (temp * 9/5) + 32;
+                    gas = Math.round((celsius - 121) / 14);
+                } else if (fromUnit === 'fahrenheit') {
+                    fahrenheit = temp;
+                    celsius = (temp - 32) * 5/9;
+                    gas = Math.round((celsius - 121) / 14);
+                } else {
+                    gas = temp;
+                    celsius = gas * 14 + 121;
+                    fahrenheit = (celsius * 9/5) + 32;
+                }
+                
+                document.getElementById('tempResult').innerHTML = `${temp}° ${fromUnit.charAt(0).toUpperCase() + fromUnit.slice(1)} is equal to:<br>
+                    ${celsius.toFixed(1)}°C<br>
+                    ${fahrenheit.toFixed(1)}°F<br>
+                    Gas Mark ${gas}`;
+            });
+    
+            document.getElementById('scaleRecipe').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const originalYield = parseFloat(document.getElementById('originalYield').value);
+                const desiredYield = parseFloat(document.getElementById('desiredYield').value);
+                const ingredient1 = parseFloat(document.getElementById('ingredient1').value);
+                const ingredient2 = document.getElementById('ingredient2').value ? parseFloat(document.getElementById('ingredient2').value) : null;
+                
+                const scaleFactor = desiredYield / originalYield;
+                const newIngredient1 = ingredient1 * scaleFactor;
+                const newIngredient2 = ingredient2 ? ingredient2 * scaleFactor : null;
+                
+                let result = `Scaled recipe for ${desiredYield} servings:<br>
+                    Ingredient 1: ${newIngredient1.toFixed(2)}`;
+                if (newIngredient2) result += `<br>Ingredient 2: ${newIngredient2.toFixed(2)}`;
+                
+                document.getElementById('scaleResult').innerHTML = result;
+            });
+    
+            document.getElementById('customDensity').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const amount = parseFloat(document.getElementById('customAmount').value);
+                const fromUnit = document.getElementById('customFromUnit').value;
+                const density = parseFloat(document.getElementById('customDensity').value);
+                
+                let result;
+                if (fromUnit === 'volume') {
+                    result = `${amount} mL is equal to ${(amount * density).toFixed(2)} g`;
+                } else {
+                    result = `${amount} g is equal to ${(amount / density).toFixed(2)} mL`;
+                }
+                
+                document.getElementById('customResult').innerHTML = result;
+            });
+        </script>
+    
+    <footer>
+        <ul>
+            <li><a href="index.html">Main page</a></li>
+        </ul>
+    </footer>
+    </body></html>

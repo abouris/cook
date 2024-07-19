@@ -1,0 +1,139 @@
+<html><head><title>Bread Ingredients Calculator</title><style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f5f0;
+    }
+    h1 {
+        color: #8b4513;
+        text-align: center;
+    }
+    form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #8b4513;
+    }
+    input[type="number"], input[type="radio"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+    input[type="radio"] {
+        width: auto;
+        margin-right: 10px;
+    }
+    button {
+        background-color: #8b4513;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #a0522d;
+    }
+    #result {
+        margin-top: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .ingredient {
+        margin-bottom: 10px;
+    }
+    .ingredient span {
+        font-weight: bold;
+        color: #8b4513;
+    }
+</style><script type="text/javascript" nonce="3ef5692b142a4420908a6375302" src="//local.adguard.org?ts=1720083836435&amp;type=content-script&amp;dmn=anto.tasis.com.au:2083&amp;url=https%3A%2F%2Fanto.tasis.com.au%3A2083%2Fcpsess7591037562%2Fdownload%3Fskipencode%3D1%26file%3D%252fhome%252fstopzone%252fbake.stop.zone%252fbread.html&amp;app=com.google.Chrome&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script>
+<script type="text/javascript" nonce="3ef5692b142a4420908a6375302" src="//local.adguard.org?ts=1720083836435&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;type=user-script"></script><script type="text/javascript" nonce="3ef5692b142a4420908a6375302" src="//local.adguard.org?ts=1720083836435&amp;type=content-script&amp;dmn=websim.ai&amp;url=https%3A%2F%2Fwebsim.ai%2Fapi%2Fhtml%3Fpayload%3D%257B%2522id%2522%253A%2522ugNPSniFnyirjxtBJ%2522%252C%2522debug%2522%253A%2522true%2522%252C%2522raw%2522%253A%2522true%2522%257D&amp;app=com.google.Chrome&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script>
+<script type="text/javascript" nonce="3ef5692b142a4420908a6375302" src="//local.adguard.org?ts=1720083836435&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;type=user-script"></script></head><body>
+    <h1>Bread Ingredients Calculator</h1>
+    <form id="breadCalculator">
+        <label>
+            <input type="radio" name="calculationType" value="bread" checked> Calculate from bread weight
+        </label>
+        <label>
+            <input type="radio" name="calculationType" value="flour"> Calculate from flour weight
+        </label>
+        <br><br>
+        <label for="weight">Weight (in grams):</label>
+        <input type="number" id="weight" name="weight" required>
+        
+        <label for="hydration">Hydration (%):</label>
+        <input type="number" id="hydration" name="hydration" required>
+        
+        <label>
+            <input type="radio" name="leavenType" value="yeast" checked> Use Dry Yeast
+        </label>
+        <label>
+            <input type="radio" name="leavenType" value="sourdough"> Use Sourdough Leaven
+        </label>
+        
+        <button type="submit">Calculate</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('breadCalculator').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const calculationType = document.querySelector('input[name="calculationType"]:checked').value;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const hydration = parseFloat(document.getElementById('hydration').value) / 100;
+            const leavenType = document.querySelector('input[name="leavenType"]:checked').value;
+
+            let flour, water, salt, leaven;
+
+            if (calculationType === 'bread') {
+                flour = weight / (1 + hydration + 0.02 + (leavenType === 'yeast' ? 0.014 : 0.2));
+            } else {
+                flour = weight;
+            }
+
+            water = flour * hydration;
+            salt = flour * 0.02;
+
+            if (leavenType === 'yeast') {
+                leaven = flour * 0.014;
+            } else {
+                leaven = flour * 0.2;
+            }
+
+            const totalDoughWeight = flour + water + salt + leaven;
+            const finalBreadWeight = totalDoughWeight * 0.85;
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <h2>Recipe Results:</h2>
+                <div class="ingredient"><span>Flour:</span> ${flour.toFixed(1)}g</div>
+                <div class="ingredient"><span>Water:</span> ${water.toFixed(1)}g</div>
+                <div class="ingredient"><span>Salt:</span> ${salt.toFixed(1)}g</div>
+                <div class="ingredient"><span>${leavenType === 'yeast' ? 'Dry Yeast' : 'Sourdough Leaven'}:</span> ${leaven.toFixed(1)}g</div>
+                <br>
+                <div class="ingredient"><span>Total Dough Weight:</span> ${totalDoughWeight.toFixed(1)}g</div>
+                <div class="ingredient"><span>Final Bread Weight (after 15% loss):</span> ${finalBreadWeight.toFixed(1)}g</div>
+            `;
+        });
+    </script>
+    <footer>
+        <ul>
+            <li><a href="index.html">Main page</a></li>
+        </ul>
+    </footer>
+</body></html>
